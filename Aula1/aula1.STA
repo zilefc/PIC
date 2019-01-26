@@ -1,0 +1,48 @@
+
+ROM used:   124/32768 (0%)
+            4220/32768 (13%) including unused fragments
+
+            0.1 Average locations per line
+            10.3 Average locations per statement
+
+RAM used:   5/2048 (0%) at main() level
+            6/2048 (0%) worst case
+
+Stack used: 2 worst case (1 in main + 1 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   18     9  75  aula1.c
+   37     3  25  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\SanUsb.h
+  837     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h
+----- -----
+  892    12 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40  16    1             @delay_ms1
+0      4   2    0     3  0.0  SanUsBootloader
+0     76  31    1   149  1.8  MAIN
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               2
+    Statements              12
+    Comments                178
+    Volume (V)              169
+    Difficulty (D)          2.3
+    Effort to implement (E) 381
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    163
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00FFE     4  4092  
+01000-01006     4  4  
+01008-07FFE   116  28548  
+
+
+

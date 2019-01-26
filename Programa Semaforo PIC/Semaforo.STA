@@ -1,0 +1,48 @@
+
+ROM used:   160/32768 (0%)
+            4256/32768 (13%) including unused fragments
+
+            0.2 Average locations per line
+            10.0 Average locations per statement
+
+RAM used:   5/2048 (0%) at main() level
+            6/2048 (0%) worst case
+
+Stack used: 2 worst case (1 in main + 1 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   21    13  81  Semaforo.c
+   37     3  19  ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\SanUsb.h
+  837     0   0  ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h
+----- -----
+  895    16 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40  12    1             @delay_ms1
+0      4   1    0     3  0.0  SanUsBootloader
+0    112  35    1   243  1.8  MAIN
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               2
+    Statements              16
+    Comments                184
+    Volume (V)              265
+    Difficulty (D)          2.5
+    Effort to implement (E) 652
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    149
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00FFE     4  4092  
+01000-01006     4  4  
+01008-07FFE   152  28512  
+
+
+

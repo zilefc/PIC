@@ -1,0 +1,153 @@
+CCS PCH C Compiler, Version 5.015, 5967               26-Jan-19 14:23
+
+               Filename:   C:\Users\fczil\OneDrive\Documents\Curso Micro1\Aula1\aula1.lst
+
+               ROM used:   124 bytes (0%)
+                           Largest free fragment is 28548
+               RAM used:   5 (0%) at main() level
+                           6 (0%) worst case
+               Stack used: 2 locations (1 in main + 1 for interrupts)
+               Stack size: 31
+
+*
+1000:  GOTO   1030
+.................... #include <SanUsb.h> 
+.................... /********************************************************************************** 
+.................... Profª Renata Pereira / Profº Sandro Jucá 
+.................... --------------------------------------- 
+.................... contato: kit.recomponentes@gmail.com 
+.................... site: www.recomponentes.com 
+.................... Grupo: www.tinyurl.com/SanUSB 
+.................... video-aulas: www.youtube.com/recomponentes 
+.................... Mercado Livre: http://lista.mercadolivre.com.br/sanusb 
+....................  
+.................... Fortaleza-Maracanaú-CE 
+.................... **********************************************************************************/ 
+....................  
+.................... /////////////////////////www.tinyurl.com/SanUSB//////////// 
+.................... #include <18F4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+.................... #fuses HSPLL,PLL5, USBDIV,CPUDIV1,VREGEN,NOWDT,NOPROTECT,NOLVP,NODEBUG 
+.................... #use delay(clock=48000000)//Frequência padrão da USB 
+*
+1008:  CLRF   FEA
+100A:  MOVLW  06
+100C:  MOVWF  FE9
+100E:  MOVF   FEF,W
+1010:  BZ    102E
+1012:  MOVLW  0F
+1014:  MOVWF  01
+1016:  CLRF   00
+1018:  DECFSZ 00,F
+101A:  BRA    1018
+101C:  DECFSZ 01,F
+101E:  BRA    1016
+1020:  MOVLW  8F
+1022:  MOVWF  00
+1024:  DECFSZ 00,F
+1026:  BRA    1024
+1028:  NOP   
+102A:  DECFSZ FEF,F
+102C:  BRA    1012
+102E:  RETURN 0
+.................... #byte OSCCON=0XFD3 
+.................... //#use delay(clock=4000000) // Clock do oscilador interno do processador de 4MHz 
+.................... #USE RS232 (BAUD=9600,XMIT=PIN_C6,RCV=PIN_C7) 
+....................  
+.................... // Reserva de área da memória flash para o bootloader 
+.................... #build(reset=0x1000) 
+.................... #build(interrupt=0x1008) 
+.................... #org 0x0000,0x0fff 
+.................... void SanUsBootloader() { 
+.................... 		      #asm 
+*
+0000:  NOP   
+....................   		      nop 
+.................... 		     #endasm 
+0002:  RETURN 0
+.................... 	                       } 
+....................  
+.................... void clock_int_4MHz(void) 
+.................... { 
+....................   //OSCCON=0B01100110; 
+....................   while(read_eeprom(0xfd)); 
+....................                            } 
+....................  
+.................... #define pin_a0 btn 
+....................  
+.................... void main () { 
+*
+1030:  CLRF   FF8
+1032:  BCF    FD0.7
+1034:  BSF    FB8.3
+1036:  MOVLW  E1
+1038:  MOVWF  FAF
+103A:  MOVLW  04
+103C:  MOVWF  FB0
+103E:  MOVLW  A6
+1040:  MOVWF  FAC
+1042:  MOVLW  90
+1044:  MOVWF  FAB
+1046:  MOVF   FC1,W
+1048:  ANDLW  C0
+104A:  IORLW  0F
+104C:  MOVWF  FC1
+104E:  MOVLW  07
+1050:  MOVWF  FB4
+.................... set_tris_a(0x00); 
+1052:  MOVLW  00
+1054:  MOVWF  F92
+.................... set_tris_b(0x00); 
+1056:  MOVWF  F93
+.................... output_b(0); 
+1058:  CLRF   F93
+105A:  CLRF   F8A
+....................  
+.................... while(true){ 
+....................  
+.................... Output_high(pin_b7); 
+105C:  BCF    F93.7
+105E:  BSF    F8A.7
+.................... delay_ms(5000); 
+1060:  MOVLW  14
+1062:  MOVWF  05
+1064:  MOVLW  FA
+1066:  MOVWF  06
+1068:  RCALL  1008
+106A:  DECFSZ 05,F
+106C:  BRA    1064
+.................... output_low(pin_b7); 
+106E:  BCF    F93.7
+1070:  BCF    F8A.7
+.................... delay_ms(250); 
+1072:  MOVLW  FA
+1074:  MOVWF  06
+1076:  RCALL  1008
+1078:  BRA    105C
+....................  
+.................... } 
+.................... } 
+107A:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CE24   PLL5 CPUDIV1 USBDIV HSPLL FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8700   CCP2C1 PBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

@@ -1,0 +1,65 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     MAIN.@SCRATCH1
+006     @delay_ms1.P1
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FD3     OSCCON
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000000  SanUsBootloader
+001008  @delay_ms1
+001030  MAIN
+001030  @cinit1
+001052  @cinit2
+
+Project Directory:
+    C:\Users\fczil\OneDrive\Documents\Curso Micro1\Programa Semaforo PIC\
+
+Project Files:
+    Semaforo.c                                              [26-Jan-19 14:26  CRC=661AAF55]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\SanUsb.h [20-Apr-13 18:54  CRC=7C827C86]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h [12-Nov-13 14:35  CRC=5337E248]
+
+Source signature=890CF06B
+
+Units:
+    Semaforo (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Semaforo.xsym
+    Errors:      Semaforo.err
+    Ext Symbols: Semaforo.esym
+    INHX32:      Semaforo.hex
+    Symbols:     Semaforo.sym
+    List:        Semaforo.lst
+    Debug/COFF:  Semaforo.cof
+    Project:     Semaforo.ccspjt
+    Call Tree:   Semaforo.tre
+    Statistics:  Semaforo.STA
